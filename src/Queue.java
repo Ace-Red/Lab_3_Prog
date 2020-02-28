@@ -2,14 +2,17 @@
 import java.util.ArrayList;
 
 public class Queue {
-    ArrayList<Character> queue;
+    ArrayList<int[]> queue;
     private int len;
 
     public Queue(){
         queue = new ArrayList<>();
         len = 0;
     }
-    public void add(char element){
+    public void add(int x,int y){
+        int[] element = new int[2];
+        element[0] = x;
+        element[1] = y;
         queue.add(element);
         len++;
     }

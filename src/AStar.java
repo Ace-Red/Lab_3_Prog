@@ -11,28 +11,28 @@ public class AStar {
         int numberOfPath = 1;
 
 
-        while (h(path[numberOfPath-1], finish)!=0) {
+        while (h(path[numberOfPath - 1], finish) != 0) {
             int[][] points = new int[4][3];
             int iHavePoints = 0;
             int[][] suspect = new int[4][3];
-            suspect[0][0] = path[numberOfPath-1][0] + 1;
-            suspect[1][0] = path[numberOfPath-1][0] - 1;
-            suspect[0][1] = suspect[1][1] = path[numberOfPath-1][1];
+            suspect[0][0] = path[numberOfPath - 1][0] + 1;
+            suspect[1][0] = path[numberOfPath - 1][0] - 1;
+            suspect[0][1] = suspect[1][1] = path[numberOfPath - 1][1];
 
-            suspect[2][1] = path[numberOfPath-1][1] + 1;
-            suspect[3][1] = path[numberOfPath-1][1] - 1;
-            suspect[2][0] = suspect[3][0] = path[numberOfPath-1][0];
+            suspect[2][1] = path[numberOfPath - 1][1] + 1;
+            suspect[3][1] = path[numberOfPath - 1][1] - 1;
+            suspect[2][0] = suspect[3][0] = path[numberOfPath - 1][0];
 
             for (int k = 0; k < 4; k++) {
                 if (!isWall(field, suspect[k])) {
                     points[iHavePoints] = suspect[k];
-                    points[iHavePoints][2] =h(finish, suspect[k]) + numberOfPath;
+                    points[iHavePoints][2] = h(finish, suspect[k]) + numberOfPath;
                     iHavePoints++;
                 }
             }
-            int[] minimum =minimum(points, iHavePoints);
-            path[numberOfPath]=minimum;
-            close(field,minimum, numberOfPath);
+            int[] minimum = minimum(points, iHavePoints);
+            path[numberOfPath] = minimum;
+            close(field, minimum, numberOfPath);
             numberOfPath++;
         }
         return path;
@@ -43,17 +43,17 @@ public class AStar {
     }
 
     private static int[] minimum(int[][] points, int iHavePoints) {
-        int minimum =0 ;
-        for (int k=0;k<iHavePoints;k++){
-            if (points[minimum][2]>points[k][2])
-                minimum=k;
+        int minimum = 0;
+        for (int k = 0; k < iHavePoints; k++) {
+            if (points[minimum][2] > points[k][2])
+                minimum = k;
         }
         int[] array = new int[2];
         System.arraycopy(points[minimum], 0, array, 0, 2);
         return array;
     }
 
-    private static void close(char[][] field, int[]point,int number){
-        field[point[0]][point[1]]=(char)('0'+number);
+    private static void close(char[][] field, int[] point, int number) {
+        field[point[0]][point[1]] = (char) ('0' + number);
     }
 }
