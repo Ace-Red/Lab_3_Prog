@@ -3,9 +3,6 @@ import java.io.FileNotFoundException;
 import java.util.Arrays;
 import java.util.Scanner;
 public class ReadWrite {
-
-
-
     public static char[][] read_file(String file_name) throws FileNotFoundException{
         File info = new File(file_name);
         Scanner scanner = new Scanner(info);
@@ -25,7 +22,7 @@ public class ReadWrite {
     public static void out_labirint(char[][] matrix){
         for(int i = 0;i<matrix.length;i++){
             for(int j = 0;j<matrix.length;j++){
-                System.out.printf("%2c",matrix[i][j]);
+                System.out.printf("%c",matrix[i][j]);
             }
             System.out.println();
         }
