@@ -1,15 +1,18 @@
+import java.util.Arrays;
+
 public class AStar {
     private static int h(int[] first, int[] second) {
         return Math.abs(first[0] - second[0]) + Math.abs(first[1] - second[1]);
     }
 
     public static int[][] findPath(char[][] field, int startX, int startY, int[] finish) {
-        int[][] path = new int[field.length * field.length / 2][2];
+        char[][] fieldOfBlock = Arrays.copyOfRange(field, 0, field.length - 1);
+        int[][] path = new int[fieldOfBlock.length * fieldOfBlock.length / 2][2];
 
         path[0][0] = startX;
         path[0][1] = startY;
         int numberOfPath = 1;
-        close(field, path[numberOfPath-1]);
+        close(fieldOfBlock, path[numberOfPath - 1]);
 
         while (h(path[numberOfPath - 1], finish) != 0) {
             int[][] points = new int[4][3];
@@ -24,13 +27,13 @@ public class AStar {
             suspect[2][0] = suspect[3][0] = path[numberOfPath - 1][0];
 
             for (int k = 0; k < 4; k++) {
-                if (!isWall(field, suspect[k])) {
+                if (!isWall(fieldOfBlock, suspect[k])) {
                     points[iHavePoints] = suspect[k];
                     points[iHavePoints][2] = h(finish, suspect[k]) + numberOfPath;
                     iHavePoints++;
                 }
             }
-            if (iHavePoints==0){
+            if (iHavePoints == 0) {
                 numberOfPath--;
                 continue;
             }
@@ -38,10 +41,13 @@ public class AStar {
 
             int[] minimum = minimum(points, iHavePoints);
             path[numberOfPath] = minimum;
-            close(field, minimum);
+            close(fieldOfBlock, minimum);
             numberOfPath++;
         }
-        return path;
+
+        path[numberOfPath - 1] = finish;
+
+        return Arrays.copyOfRange(path, 0, numberOfPath);
     }
 
     private static boolean isWall(char[][] field, int[] coordinates) {
@@ -60,6 +66,6 @@ public class AStar {
     }
 
     private static void close(char[][] field, int[] point) {
-        field[point[0]][point[1]] = ('X');
+        field[point[0]][point[1]] = 'X';
     }
 }
