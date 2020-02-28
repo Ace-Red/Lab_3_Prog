@@ -9,7 +9,7 @@ public class AStar {
         path[0][0] = startX;
         path[0][1] = startY;
         int numberOfPath = 1;
-
+        close(field, path[numberOfPath-1]);
 
         while (h(path[numberOfPath - 1], finish) != 0) {
             int[][] points = new int[4][3];
@@ -30,9 +30,15 @@ public class AStar {
                     iHavePoints++;
                 }
             }
+            if (iHavePoints==0){
+                numberOfPath--;
+                continue;
+            }
+
+
             int[] minimum = minimum(points, iHavePoints);
             path[numberOfPath] = minimum;
-            close(field, minimum, numberOfPath);
+            close(field, minimum);
             numberOfPath++;
         }
         return path;
@@ -53,7 +59,7 @@ public class AStar {
         return array;
     }
 
-    private static void close(char[][] field, int[] point, int number) {
-        field[point[0]][point[1]] = (char) ('0' + number);
+    private static void close(char[][] field, int[] point) {
+        field[point[0]][point[1]] = ('X');
     }
 }
