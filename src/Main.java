@@ -10,5 +10,6 @@ public class Main {
         finish[0] = 1;
         finish[1] = 6;
         System.out.println(Arrays.deepToString(AStar.findPath(labirint, 6, 1, finish)));
+        ReadWrite.out_way((AStar.findPath(labirint, 6, 1, finish)),"Test/out_file");
     }
 }

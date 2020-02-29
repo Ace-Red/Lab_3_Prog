@@ -1,30 +1,44 @@
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.PrintWriter;
 import java.util.Arrays;
 import java.util.Scanner;
+
 public class ReadWrite {
-    public static char[][] read_file(String file_name) throws FileNotFoundException{
+    public static char[][] read_file(String file_name) throws FileNotFoundException {
         File info = new File(file_name);
         Scanner scanner = new Scanner(info);
         String first = scanner.nextLine();
-        char[][] labirint = new char[(first.length()/2)+1][(first.length()/2)+1];
-        Arrays.fill(labirint[0],'X');
-        for(int i = 1;i<labirint.length;i++){
+        char[][] labirint = new char[(first.length() / 2) + 1][(first.length() / 2) + 1];
+        Arrays.fill(labirint[0], 'X');
+        for (int i = 1; i < labirint.length; i++) {
             String char_arr = scanner.nextLine();
             int counter = 0;
-            for(int j = 0;j<char_arr.length();j+=2){
+            for (int j = 0; j < char_arr.length(); j += 2) {
                 labirint[i][counter] = char_arr.charAt(j);
                 counter++;
             }
         }
         return labirint;
     }
-    public static void out_labirint(char[][] matrix){
-        for(int i = 0;i<matrix.length;i++){
-            for(int j = 0;j<matrix.length;j++){
-                System.out.printf("%c",matrix[i][j]);
+
+    public static void out_labirint(char[][] matrix) {
+        for (int i = 0; i < matrix.length; i++) {
+            for (int j = 0; j < matrix.length; j++) {
+                System.out.printf("%c", matrix[i][j]);
             }
             System.out.println();
         }
+    }
+
+    public static void out_way(int[][] way, String file_name) throws FileNotFoundException {
+        File file = new File(file_name);
+        PrintWriter pw = new PrintWriter(file);
+        pw.println("Ваш путь пошагово:");
+        for (int i = 0; i < way.length; i++) {
+            pw.printf("%d шаг: %d %d", (i + 1), way[i][0], way[i][1]);
+            pw.println();
+        }
+        pw.close();
     }
 }
