@@ -5,7 +5,7 @@ import java.util.Arrays;
 import java.util.Scanner;
 
 public class ReadWrite {
-    public static char[][] read_file(String file_name) {
+    public static char[][] readFile(String file_name) {
         File info = new File(file_name);
         Scanner scanner;
         try {
@@ -30,7 +30,8 @@ public class ReadWrite {
 
     }
 
-    public static void out_labirint(char[][] matrix, String file_name) throws FileNotFoundException {
+    public static void outLabirint(char[][] matrix, String file_name) {
+        try{
         File file = new File(file_name);
         PrintWriter pw = new PrintWriter(file);
         pw.println("Вот ваш конечный лабиринт: ");
@@ -40,7 +41,10 @@ public class ReadWrite {
             }
             pw.println();
         }
-        pw.close();
+        pw.close();}
+        catch (FileNotFoundException ex) {
+            System.out.println("Your path is incorrect!\n" + ex);
+        }
     }
 
 }
