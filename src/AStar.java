@@ -6,7 +6,10 @@ public class AStar {
     }
 
     public static int[][] findPath(char[][] field, int startX, int startY, int[] finish) {
-        char[][] fieldOfBlock = Arrays.copyOfRange(field, 0, field.length - 1);
+        char[][] fieldOfBlock = new char[field.length][];
+        for (int i = 0; i < field.length; i++) {
+            fieldOfBlock[i] = Arrays.copyOfRange(field[i], 0, field.length);
+        }
         int[][] path = new int[fieldOfBlock.length * fieldOfBlock.length / 2][2];
 
         path[0][0] = startX;
