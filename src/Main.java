@@ -8,7 +8,6 @@ public class Main {
         int[] finish = new int[2];
         finish[0] = 1;
         finish[1] = 6;
-        System.out.println(Arrays.deepToString(AStar.findPath(labirint, 6, 1, finish)));
         char[][] finish_labirint = SetStep.stepInLabirint(labirint,AStar.findPath(labirint, 6, 1, finish));
         ReadWrite.out_labirint(finish_labirint,"Test/out_file");
     }
