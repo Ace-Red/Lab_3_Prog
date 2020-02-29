@@ -22,23 +22,17 @@ public class ReadWrite {
         return labirint;
     }
 
-    public static void out_labirint(char[][] matrix) {
-        for (int i = 0; i < matrix.length; i++) {
-            for (int j = 0; j < matrix.length; j++) {
-                System.out.printf("%c", matrix[i][j]);
-            }
-            System.out.println();
-        }
-    }
-
-    public static void out_way(int[][] way, String file_name) throws FileNotFoundException {
+    public static void out_labirint(char[][] matrix, String file_name) throws FileNotFoundException {
         File file = new File(file_name);
         PrintWriter pw = new PrintWriter(file);
-        pw.println("Ваш путь пошагово:");
-        for (int i = 0; i < way.length; i++) {
-            pw.printf("%d шаг: %d %d", (i + 1), way[i][0], way[i][1]);
+        pw.println("Вот ваш конечный лабиринт: ");
+        for (int i = 0; i < matrix.length; i++) {
+            for (int j = 0; j < matrix[i].length; j++) {
+                pw.printf(" %c", matrix[i][j]);
+            }
             pw.println();
         }
         pw.close();
     }
+
 }
