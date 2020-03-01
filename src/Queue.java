@@ -48,6 +48,10 @@ public class Queue {
         return firstElement;
     }
 
+    public Heights watchFront(int position){
+        return elements[position];
+    }
+
     public Heights showPosition(int position){
         return elements[position];
     }

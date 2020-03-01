@@ -30,10 +30,10 @@ public class AStar {
                     opened.push(point);
                 } else {
 
-                    if (opened.front(positionOfNeighbour).getFullCostPath() > path) {
-                        opened.front(positionOfNeighbour).setFullCostPath(path);
-                        opened.front(positionOfNeighbour).setFather(closed.peek().getIdenticalNumber());
-                        opened.front(positionOfNeighbour).setPartialCostPath(partialPath);
+                    if (opened.watchFront(positionOfNeighbour).getFullCostPath() > path) {
+                        opened.watchFront(positionOfNeighbour).setFullCostPath(path);
+                        opened.watchFront(positionOfNeighbour).setFather(closed.peek().getIdenticalNumber());
+                        opened.watchFront(positionOfNeighbour).setPartialCostPath(partialPath);
                     }
 
                 }
