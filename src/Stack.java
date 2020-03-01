@@ -1,4 +1,4 @@
-public class Stack {//TODO: Rebuild for AStar
+public class Stack {
     private int[] elements;
     private int size;
     public static final int DEFAULT_CAPACITY = 16;
