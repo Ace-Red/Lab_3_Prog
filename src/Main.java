@@ -1,7 +1,7 @@
 public class Main {
 
     public static void main(String[] args)  {
-        char[][] labirint = ReadWrite.read_file("Test/file_labirint");
+        char[][] labirint = ReadWrite.readFile("Test/file_labirint");
         int[] finish = new int[2];
         finish[0] = 1;
         finish[1] = 6;
