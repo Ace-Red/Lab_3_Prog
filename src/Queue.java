@@ -31,7 +31,7 @@ public class Queue {
 
     public Heights peek() {
         return elements[size - 1];
-}
+    }
 
     public boolean empty() {
         return size == 0;
@@ -41,38 +41,39 @@ public class Queue {
         return size;
     }
 
-    public Heights front(int position){
-        Heights firstElement =  elements[position];
+    public Heights front(int position) {
+        Heights firstElement = elements[position];
         if (size - 1 - position >= 0) System.arraycopy(elements, position + 1, elements, position, size - 1 - position);
         size--;
         return firstElement;
     }
 
-    public Heights watchFront(int position){
+    public Heights watchFront(int position) {
         return elements[position];
     }
 
-    public Heights showPosition(int position){
+    public Heights showPosition(int position) {
         return elements[position];
     }
 
-    public int findMinimum(){
-        int minimum = 0;
-        for (int k=size-1;k>0;k--){
-            if(elements[minimum].getFullCostPath()>elements[k].getFullCostPath())
-                minimum=k;
+    public int findMinimum() {
+        int minimum = size - 1;
+        for (int k = size - 1; k >= 0; k--) {
+            if (elements[minimum].getFullCostPath() > elements[k].getFullCostPath())
+                minimum = k;
         }
         return minimum;
     }
-    public int existNeighbour(int x, int y){
-        for (int k=0;k<size;k++){
-            if (elements[k].getPositionX()==x&&elements[k].getPositionY()==y)
+
+    public int existNeighbour(int x, int y) {
+        for (int k = 0; k < size; k++) {
+            if (elements[k].getPositionX() == x && elements[k].getPositionY() == y)
                 return k;
         }
         return -1;
     }
 
-    public boolean isEmpty(){
-        return size==0;
+    public boolean isEmpty() {
+        return size == 0;
     }
 }
