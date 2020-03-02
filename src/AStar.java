@@ -5,7 +5,7 @@ public class AStar {
         return Math.abs(first[0] - second[0]) + Math.abs(first[1] - second[1]);
     }
 
-    public static Queue findPath(char[][] field, int startX, int startY, int[] finish) {
+    public static Queue findPath(char[][] field, int startX, int startY, int[] finish) throws Exception {
         char[][] passedHeight = new char[field.length][];
         for (int i = 0; i < field.length; i++) {
             passedHeight[i]= Arrays.copyOfRange(field[i], 0, field[i].length);
@@ -44,6 +44,8 @@ public class AStar {
 
             }
         }
+        if (closed.showPosition(closed.getSize()-1).getPositionX()!=finish[0]&&closed.showPosition(closed.getSize()-1).getPositionY()!=finish[1])
+            throw new Exception("Path not found");
         Queue path = new Queue();
         path.push(closed.peek());
         int father = closed.peek().getFather();
