@@ -5,7 +5,7 @@ public class Heights {
     private int fullCostPath;
     private int partialCostPath;
     private int identicalNumber;
-    static int counter =0;
+    private static int counter =0;
 
     public Heights(int positionX, int positionY, int fullCostPath, int partialCostPath) {
         this.positionX = positionX;
