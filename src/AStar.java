@@ -53,6 +53,7 @@ public class AStar {
                 father = closed.showPosition(k).getFather();
             }
         }
+        path.reverse();
         return path;
     }
 

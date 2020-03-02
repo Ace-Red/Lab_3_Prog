@@ -76,4 +76,12 @@ public class Queue {
     public boolean isEmpty() {
         return size == 0;
     }
+
+    public void reverse(){
+        for (int i = 0; i < size/2; i++) {
+            Heights temp = elements[i];
+            elements[i] = elements[size-1-i];
+            elements[size-1-i]= temp;
+        }
+    }
 }
