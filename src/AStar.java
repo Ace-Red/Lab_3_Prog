@@ -1,19 +1,15 @@
 import java.util.Arrays;
 
 public class AStar {
-    private static int h(int[] first, int[] second) {
-        return Math.abs(first[0] - second[0]) + Math.abs(first[1] - second[1]);
-    }
-
     public static Queue findPath(char[][] field, int startX, int startY, int[] finish) throws Exception {
         char[][] passedHeight = new char[field.length][];
-        for (int i = 0; i < field.length; i++) {
+        for (int i = 0; i < field.length; i++)
             passedHeight[i]= Arrays.copyOfRange(field[i], 0, field[i].length);
-        }
+
         Queue opened = new Queue();
         Queue closed = new Queue();
-        int counter = 0;
-        Heights start = new Heights(startX, startY, counter++, 0, 0);
+        Heights start = new Heights(startX, startY, 0, 0);
+
         opened.push(start);
         while (!opened.isEmpty()) {
             int positionOfMinimum = opened.findMinimum();
@@ -29,7 +25,7 @@ public class AStar {
                 int path = partialPath + h(finish, neighbour);
                 if (positionOfNeighbour == -1) {
 
-                    Heights point = new Heights(neighbour[0], neighbour[1], counter++, path, partialPath);
+                    Heights point = new Heights(neighbour[0], neighbour[1], path, partialPath);
                     point.setFather(closed.peek().getIdenticalNumber());
                     opened.push(point);
                 } else {
@@ -81,5 +77,9 @@ public class AStar {
             if (!isWall(field, suspect[k]))
                 neighbours[counter++] = suspect[k];
         return Arrays.copyOfRange(neighbours, 0, counter);
+    }
+
+    private static int h(int[] first, int[] second) {
+        return Math.abs(first[0] - second[0]) + Math.abs(first[1] - second[1]);
     }
 }
