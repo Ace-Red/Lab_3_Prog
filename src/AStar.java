@@ -6,6 +6,10 @@ public class AStar {
     }
 
     public static Queue findPath(char[][] field, int startX, int startY, int[] finish) {
+        char[][] passedHeight = new char[field.length][];
+        for (int i = 0; i < field.length; i++) {
+            passedHeight[i]= Arrays.copyOfRange(field[i], 0, field[i].length);
+        }
         Queue opened = new Queue();
         Queue closed = new Queue();
         int counter = 0;
@@ -17,8 +21,8 @@ public class AStar {
             if (closed.peek().getPositionX() == finish[0] && closed.peek().getPositionY() == finish[1])
                 break;
 
-            close(field, closed.peek().getPositionX(), closed.peek().getPositionY());
-            int[][] neighbours = findOpenedNeighbour(field, closed.peek().getPositionX(), closed.peek().getPositionY());
+            close(passedHeight, closed.peek().getPositionX(), closed.peek().getPositionY());
+            int[][] neighbours = findOpenedNeighbour(passedHeight, closed.peek().getPositionX(), closed.peek().getPositionY());
             for (int[] neighbour : neighbours) {
                 int positionOfNeighbour = opened.existNeighbour(neighbour[0], neighbour[1]);
                 int partialPath = 1 + closed.peek().getPartialCostPath();
