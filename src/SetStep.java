@@ -1,11 +1,11 @@
 public class SetStep {
-    public static char[][] stepInLabirint(char[][] labirint,int[][]way){
-        for (int i = 0;i<way.length;i++){
+    public static char[][] stepInLabirint(char[][] labirint,Queue coordinates){
+        for (int i = 0;i<coordinates.getSize();i++){
             if(i<10) {
-                labirint[way[i][0]][way[i][1]] = (char) ('0' + i);
+                labirint[coordinates.showPosition(i).getPositionX()][coordinates.showPosition(i).getPositionY()] = (char) ('0' + i);
             }
             else{
-                labirint[way[i][0]][way[i][1]] = (char) ('a' + (i-10));
+                labirint[coordinates.showPosition(i).getPositionX()][coordinates.showPosition(i).getPositionY()] = (char) ('a' + (i-10));
             }
         }
     return labirint;
