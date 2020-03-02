@@ -5,7 +5,7 @@ public class SetStep {
                 labirint[coordinates.showPosition(i).getPositionX()][coordinates.showPosition(i).getPositionY()] = (char) ('0' + i);
             }
             else{
-                labirint[coordinates.showPosition(i).getPositionX()][coordinates.showPosition(i).getPositionY()] = (char) ('a' + (i-10));
+                labirint[coordinates.showPosition(i).getPositionX()][coordinates.showPosition(i).getPositionY()] = (char) (('z'-'a' + (i-9))%('z'-'a' + 1)+'a');
             }
         }
     return labirint;
