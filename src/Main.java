@@ -11,7 +11,7 @@ public class Main {
             char[][] finish_labirint = SetStep.stepInLabirint(maze, path);
             ReadWrite.outLabirint(finish_labirint, "Test/out_file");
         } catch (Exception ex) {
-            System.out.println(ex+" oh one more error(");
+            ReadWrite.easterEgg("easterEggs/women.txt","Test/out_file");
         }
     }
 }

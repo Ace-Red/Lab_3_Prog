@@ -46,5 +46,22 @@ public class ReadWrite {
             System.out.println("Your path is incorrect!\n" + ex);
         }
     }
+    public static void easterEgg(String file_read,String file_write){
+        try {
+            File info = new File(file_read);
+            Scanner scanner = new Scanner(info);
+            String str;
+            File file = new File(file_write);
+            PrintWriter pw = new PrintWriter(file);
+            while (scanner.hasNext()){
+                str = scanner.nextLine();
+                pw.println(str);
+            }
+
+            pw.close();
+        }catch (FileNotFoundException ex){
+            System.out.println("Your path is incorrect!\n" + ex);
+        }
+    }
 
 }
